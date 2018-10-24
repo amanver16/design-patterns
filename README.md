@@ -32,3 +32,4 @@ This repository contains examples of all 23 design patterns of GOF.
 12. Visitor
 
 ![Alt GOF](https://github.com/amanver16/ebooks_cheatsheets/blob/master/Images/GOF%20Design%20Patterns%20Classification.JPG)
+Here is an image from the original GOF Book which describes how these patterns are catogerized. The number represents page numbers of the [book](https://github.com/amanver16/ebooks_cheatsheets/blob/master/PDF/Design%20Patterns%20-%20Elements%20of%20Reusable%20Object%20Oriented%20Software%20-%20GOF.pdf)
