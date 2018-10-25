@@ -1,5 +1,4 @@
 # GOF (Gangs of Four) Design Patterns
----
 This repository contains examples of all 23 design patterns of GOF.
 
 ## Creational Design Patterns
