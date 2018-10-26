@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.aman.gof</groupId>
-    <artifactId>PrototypeDesignPattern</artifactId>
+    <artifactId>SingletonDesignPattern</artifactId>
     <version>1.0</version>
 
-    <name>Prototype Design Pattern</name>
-    <description>GOF - Creational Design Pattern - SoftwareCompanyEmployees Application</description>
+    <name>Singleton Design Pattern</name>
+    <description>GOF - Creational Design Pattern - Student Application</description>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -16,6 +16,14 @@
     </properties>
 
     <dependencies>
+
+        <!-- JDBC Dependency -->
+
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>6.1.0.jre8</version>
+        </dependency>
 
         <!-- Lombok Dependency -->
 
