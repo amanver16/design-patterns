@@ -18,7 +18,7 @@ Implements the prototype interface and opertaion to clone itself.
 Creates object by asking the prototype to clone itself.
 
 ## About Project
-The project describes how Factory Pattern works in practical by using Software Company Employees Application. Remember it is not recommended to fully implement a design pattern as it is, the implementation of a design pattern fully depends upon the use cases of the project. A design pattern if applied at wrong place can mess with the whole application.  
+The project describes how Prototype Design Pattern works in practical by using Software Company Employees Application. Remember it is not recommended to fully implement a design pattern as it is, the implementation of a design pattern fully depends upon the use cases of the project. A design pattern if applied at wrong place can mess with the whole application.  
 
 ## How to Run
 Just compile and run the application using the main class **EmployeeManagement.java**

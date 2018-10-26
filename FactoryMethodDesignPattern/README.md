@@ -6,7 +6,7 @@ The factory method design pattern is one of the Creational Design Pattern as des
 
 Below image describes structure of Factory Method Pattern  
 
-![Builder Design Pattern](https://github.com/amanver16/ebooks_cheatsheets/blob/master/Images/Factory%20Method%20Design%20Pattern.png)  
+![Factory Design Pattern](https://github.com/amanver16/ebooks_cheatsheets/blob/master/Images/Factory%20Method%20Design%20Pattern.png)  
 
 **Product :**  
 Defines the interface of objects that factory method creates.  
