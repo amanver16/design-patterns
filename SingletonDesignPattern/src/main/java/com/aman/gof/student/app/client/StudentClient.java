@@ -29,6 +29,7 @@ public class StudentClient {
             int choice = scanner.nextInt();
 
             switch (choice) {
+                
             case 1:
                 callAddStudentService(connection);
                 break;
@@ -39,10 +40,11 @@ public class StudentClient {
                 callDeleteStudentService(connection);
                 break;
             case 4:
-                System.exit(0);
                 scanner.close();
+                closeJdbcConnection(connection);
+                System.exit(0);
             default:
-                System.out.println("Wrong Choice !!!");
+                System.out.println("Wrong Choice. Try Again !!!");
                 break;
             }
 
@@ -102,6 +104,18 @@ public class StudentClient {
             System.out.println("Student Not Available !!!");
         }
 
+    }
+
+    // Close connection
+    public static void closeJdbcConnection(Connection connection) {
+        try {
+            connection.close();
+            System.out.println("JDBC Connection Closed.");
+        } catch (Exception sqlException) {
+            System.out.println("Exception occurred while closing JDBC connection !!! ");
+            System.out.println("Exception is: " + sqlException.getMessage());
+            sqlException.printStackTrace();
+        }
     }
 
 }
