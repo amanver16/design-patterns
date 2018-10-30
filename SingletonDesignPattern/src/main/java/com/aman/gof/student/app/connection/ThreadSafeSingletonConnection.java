@@ -10,19 +10,16 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 /**
- * In Eager Initialization the singleton class instance is created at the time
- * of class loading. The main drawback is, the instance is created even clients
- * are not using this instance. This method is not recommended for the classes
- * using system resources, because resources will be allocated even if the
- * object is not being used which is expensive. This method does not provide
- * way for exception handling for instance creation
+ * This way of creating singleton instance is thread safe, but it decreases
+ * performance beacuse of synchronization. To make a singleton instance thread
+ * safe, synchronize keyword is used
  */
-public class EagerInitializationConnection {
+public class ThreadSafeSingletonConnection {
 
-    private static final EagerInitializationConnection eagerInitializationConnection = new EagerInitializationConnection();
+    private static ThreadSafeSingletonConnection threadSafeSingletonConnection;
     private Connection connection;
 
-    private EagerInitializationConnection() {
+    private ThreadSafeSingletonConnection() {
 
         Properties properties = new Properties();
         File propertiesFile = new File("src/main/resources/connection.properties");
@@ -52,8 +49,14 @@ public class EagerInitializationConnection {
 
     }
 
-    public static EagerInitializationConnection getInstance() {
-        return eagerInitializationConnection;
+    public static synchronized ThreadSafeSingletonConnection getInstance() {
+
+        if (threadSafeSingletonConnection == null) {
+            threadSafeSingletonConnection = new ThreadSafeSingletonConnection();
+        }
+
+        return threadSafeSingletonConnection;
+
     }
 
     public Connection getConnection() {

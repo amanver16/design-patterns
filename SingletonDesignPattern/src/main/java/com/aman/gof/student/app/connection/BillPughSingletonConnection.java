@@ -10,19 +10,16 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 /**
- * In Eager Initialization the singleton class instance is created at the time
- * of class loading. The main drawback is, the instance is created even clients
- * are not using this instance. This method is not recommended for the classes
- * using system resources, because resources will be allocated even if the
- * object is not being used which is expensive. This method does not provide
- * way for exception handling for instance creation
+ * This approach is most widely used. In this method a separate static inner
+ * class is used to create the instance of singleton class. So this class is not
+ * loaded into memory when the singleton class is loaded. Only when the
+ * getInstance() method is called then it is loaded.
  */
-public class EagerInitializationConnection {
+public class BillPughSingletonConnection {
 
-    private static final EagerInitializationConnection eagerInitializationConnection = new EagerInitializationConnection();
     private Connection connection;
 
-    private EagerInitializationConnection() {
+    private BillPughSingletonConnection() {
 
         Properties properties = new Properties();
         File propertiesFile = new File("src/main/resources/connection.properties");
@@ -52,8 +49,13 @@ public class EagerInitializationConnection {
 
     }
 
-    public static EagerInitializationConnection getInstance() {
-        return eagerInitializationConnection;
+    // Static Singleton Helper class Bill Pugh Method
+    private static class BillPughSingleton {
+        private static final BillPughSingletonConnection BILL_PUGH_SINGLETON_CONNECTION = new BillPughSingletonConnection();
+    }
+
+    public static BillPughSingletonConnection getInstance() {
+        return BillPughSingleton.BILL_PUGH_SINGLETON_CONNECTION;
     }
 
     public Connection getConnection() {

@@ -10,19 +10,17 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 /**
- * In Eager Initialization the singleton class instance is created at the time
- * of class loading. The main drawback is, the instance is created even clients
- * are not using this instance. This method is not recommended for the classes
- * using system resources, because resources will be allocated even if the
- * object is not being used which is expensive. This method does not provide
- * way for exception handling for instance creation
+ * In Lazy Initialization method the instance is created in a public static
+ * method. So instance will be only available when client calls this method.
+ * This approach is not thread safe. In multithreading environment two threads
+ * can create multiple instances which is violation of singleton
  */
-public class EagerInitializationConnection {
+public class LazyInitializationConnection {
 
-    private static final EagerInitializationConnection eagerInitializationConnection = new EagerInitializationConnection();
+    private static LazyInitializationConnection lazyInitializationConnection;
     private Connection connection;
 
-    private EagerInitializationConnection() {
+    private LazyInitializationConnection() {
 
         Properties properties = new Properties();
         File propertiesFile = new File("src/main/resources/connection.properties");
@@ -52,8 +50,14 @@ public class EagerInitializationConnection {
 
     }
 
-    public static EagerInitializationConnection getInstance() {
-        return eagerInitializationConnection;
+    public static LazyInitializationConnection getInstance() {
+
+        if (lazyInitializationConnection == null) {
+            lazyInitializationConnection = new LazyInitializationConnection();
+        }
+
+        return lazyInitializationConnection;
+
     }
 
     public Connection getConnection() {

@@ -10,19 +10,17 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 /**
- * In Eager Initialization the singleton class instance is created at the time
- * of class loading. The main drawback is, the instance is created even clients
- * are not using this instance. This method is not recommended for the classes
- * using system resources, because resources will be allocated even if the
- * object is not being used which is expensive. This method does not provide
- * way for exception handling for instance creation
+ * Static block initialization is similar to Eager Initialization, the
+ * difference is instance is created in a static block and it provides way for
+ * exception handling. This method is also not recommended beacuse it also
+ * allocates resources at the time of class loading which is not best practice
  */
-public class EagerInitializationConnection {
+public class StaticBlockInitializationConnection {
 
-    private static final EagerInitializationConnection eagerInitializationConnection = new EagerInitializationConnection();
+    private static StaticBlockInitializationConnection staticBlockInitializationConnection;
     private Connection connection;
 
-    private EagerInitializationConnection() {
+    private StaticBlockInitializationConnection() {
 
         Properties properties = new Properties();
         File propertiesFile = new File("src/main/resources/connection.properties");
@@ -52,8 +50,17 @@ public class EagerInitializationConnection {
 
     }
 
-    public static EagerInitializationConnection getInstance() {
-        return eagerInitializationConnection;
+    // Static block for instance creation
+    static {
+        try {
+            staticBlockInitializationConnection = new StaticBlockInitializationConnection();
+        } catch (Exception exception) {
+            throw new RuntimeException("Exception occurred while creating instance");
+        }
+    }
+
+    public static StaticBlockInitializationConnection getInstance() {
+        return staticBlockInitializationConnection;
     }
 
     public Connection getConnection() {

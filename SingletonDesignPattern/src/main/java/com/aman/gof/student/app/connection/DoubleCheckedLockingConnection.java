@@ -10,19 +10,17 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 /**
- * In Eager Initialization the singleton class instance is created at the time
- * of class loading. The main drawback is, the instance is created even clients
- * are not using this instance. This method is not recommended for the classes
- * using system resources, because resources will be allocated even if the
- * object is not being used which is expensive. This method does not provide
- * way for exception handling for instance creation
+ * This approach is similar to thread safe singleton, but we are double checking
+ * the instance before and after using synchronize. This ensures the instance is
+ * created only once for all threads. This removes overhead and increases
+ * performance.
  */
-public class EagerInitializationConnection {
+public class DoubleCheckedLockingConnection {
 
-    private static final EagerInitializationConnection eagerInitializationConnection = new EagerInitializationConnection();
+    private static DoubleCheckedLockingConnection doubleCheckedLockingConnection;
     private Connection connection;
 
-    private EagerInitializationConnection() {
+    private DoubleCheckedLockingConnection() {
 
         Properties properties = new Properties();
         File propertiesFile = new File("src/main/resources/connection.properties");
@@ -52,8 +50,18 @@ public class EagerInitializationConnection {
 
     }
 
-    public static EagerInitializationConnection getInstance() {
-        return eagerInitializationConnection;
+    public static DoubleCheckedLockingConnection getInstance() {
+
+        if (doubleCheckedLockingConnection == null) {
+            synchronized (DoubleCheckedLockingConnection.class) {
+                if (doubleCheckedLockingConnection == null) {
+                    doubleCheckedLockingConnection = new DoubleCheckedLockingConnection();
+                }
+            }
+        }
+
+        return doubleCheckedLockingConnection;
+
     }
 
     public Connection getConnection() {

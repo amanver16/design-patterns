@@ -4,7 +4,12 @@ import java.sql.Connection;
 import java.util.Scanner;
 
 import com.aman.gof.student.app.bean.StudentBean;
-import com.aman.gof.student.app.connection.EagerInitializationConnection;
+import com.aman.gof.student.app.connection.BillPughSingletonConnection;
+// import com.aman.gof.student.app.connection.DoubleCheckedLockingConnection;
+// import com.aman.gof.student.app.connection.LazyInitializationConnection;
+// import com.aman.gof.student.app.connection.ThreadSafeSingletonConnection;
+// import com.aman.gof.student.app.connection.EagerInitializationConnection;
+// import com.aman.gof.student.app.connection.StaticBlockInitializationConnection;
 import com.aman.gof.student.app.service.AddStudentService;
 import com.aman.gof.student.app.service.DeleteStudentService;
 import com.aman.gof.student.app.service.ViewStudentService;
@@ -13,9 +18,30 @@ public class StudentClient {
 
     public static void main(String[] args) {
 
-        // Get Singleton instance of Connection object
-        EagerInitializationConnection eagerInitializationConnection = EagerInitializationConnection.getInstance();
-        Connection connection = eagerInitializationConnection.getConnection();
+        // Get Singleton instance using Eager Initialization Method
+        /* EagerInitializationConnection eagerInitializationConnection = EagerInitializationConnection.getInstance();
+        Connection connection = eagerInitializationConnection.getConnection(); */
+
+        // Get Singleton instance using Static Block Initialization Method
+        /* StaticBlockInitializationConnection staticBlockInitializationConnection = StaticBlockInitializationConnection.getInstance();
+        Connection connection = staticBlockInitializationConnection.getConnection(); */
+
+        // Get Singleton instance using Lazy Initialization Method
+        /* LazyInitializationConnection lazyInitializationConnection = LazyInitializationConnection.getInstance();
+        Connection connection = lazyInitializationConnection.getConnection(); */
+
+        // Get Singleton instance using Thread Safe Singleton Method
+        /* ThreadSafeSingletonConnection threadSafeSingletonConnection = ThreadSafeSingletonConnection.getInstance();
+        Connection connection = threadSafeSingletonConnection.getConnection(); */
+
+        // Get Singleton instance using Double Check Locking Method
+        /* DoubleCheckedLockingConnection doubleCheckedLockingConnection = DoubleCheckedLockingConnection.getInstance();
+        Connection connection = doubleCheckedLockingConnection.getConnection(); */
+
+        // Get Singleton instance using Bill Pugh Singleton method
+        BillPughSingletonConnection billPughSingletonConnection = BillPughSingletonConnection.getInstance();
+        Connection connection = billPughSingletonConnection.getConnection();
+
         Scanner scanner = new Scanner(System.in);
 
         do {
