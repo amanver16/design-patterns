@@ -4,9 +4,9 @@ The adapter design pattern is one of the Structural Design Pattern as described 
 
 > Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.  
 
-Below image describes structure of Singleton Pattern  
+Below image describes structure of adapter Pattern  
 
-![Adaptor Design Pattern](https://github.com/amanver16/ebooks_cheatsheets/blob/master/Images/Adapter%20Design%20Pattern.jpg)  
+![Adapter Design Pattern](https://github.com/amanver16/ebooks_cheatsheets/blob/master/Images/Adapter%20Design%20Pattern.jpg)  
 
 **Target :**  
 Defines an interface which client expects and uses.
