@@ -4,7 +4,7 @@ The facade design pattern is one of the Structural Design Pattern as described i
 
 > Provide a unified interface to a set of interfaces in a subsystem. Facade defines a higherlevel interface that makes the subsystem easier to use. 
 
-Below image describes structure of composite pattern  
+Below image describes structure of facade pattern  
 
 ![Facade Design Pattern](https://github.com/amanver16/ebooks_cheatsheets/blob/master/Images/Facade%20Design%20Pattern.png)  
 
